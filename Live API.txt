@@ -1,0 +1,6 @@
+https://carducate.000webhostapp.com/deleteaccount.php
+https://carducate.000webhostapp.com/fetchusers.php
+https://carducate.000webhostapp.com/login.php
+https://carducate.000webhostapp.com/register.php
+https://carducate.000webhostapp.com/updatepassword.php
+https://carducate.000webhostapp.com/updateuser.php
