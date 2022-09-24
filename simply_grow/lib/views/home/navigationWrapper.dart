@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:simply_grow/views/homePage.dart';
 
+import '../../Card/cards.dart';
 import '../../app_theme.dart';
 
 class NavigationWrapper extends StatelessWidget {
@@ -28,10 +29,23 @@ class NavigationWrapper extends StatelessWidget {
                     onPageChanged: (index) {
                       navigationController.onPageChange(index);
                     },
-                    children: const <Widget>[
-                      MyHomePage(),
-                      MyHomePage(),
-                      MyHomePage()
+                    children: <Widget>[
+                      MyHomePage(
+                        title: "Hola",
+                      ),
+                      MyHomePage(
+                        title: "Hola",
+                      ),
+                      MaterialApp(
+                        home: Scaffold(
+                          // backgroundColor: Colors.red,
+                          // appBar: AppBar(
+                          //   title: Text('Dicee'),
+                          //   backgroundColor: Colors.red,
+                          // ),
+                          body: CardView(),
+                        ),
+                      ),
                     ]),
               ),
               bottomNavigationBar: Padding(
@@ -47,7 +61,7 @@ class NavigationWrapper extends StatelessWidget {
                   color: HexColorNew('#9DA0AA'),
                   // curve: Curves.slowMiddle,
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  tabs: const [
+                  tabs: [
                     GButton(
                       icon: Icons.home,
                       text: 'Home',

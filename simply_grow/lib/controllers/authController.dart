@@ -8,6 +8,7 @@ import 'package:get/get_state_manager/get_state_manager.dart';
 import '../constant.dart';
 import '../views/onboarding/authService.dart';
 import '../views/onboarding/introduction_animation/introduction_animation_screen.dart';
+import '../views/registrationPage.dart';
 
 class AuthController extends GetxController {
   getAccountDetails() async {
@@ -15,8 +16,16 @@ class AuthController extends GetxController {
     bool isOnboardingDone = await Utils.isOnboardingDone();
 
     if (data.isEmpty) {
-      // Get.offAll(() => LandingPage());
+      if (isOnboardingDone == null) {
+        await Utils.setOnboardingStatus();
+        Get.offAll(() => IntroductionAnimationScreen());
+      } else {
+        Get.offAll(() => NavigationWrapper(
+            // title: "helll",
+            ));
+      }
 
+      // Get.offAll(() => LandingPage());
     } else {
       performNewLogin(data);
     }

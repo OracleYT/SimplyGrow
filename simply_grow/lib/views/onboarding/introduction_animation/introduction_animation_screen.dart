@@ -9,6 +9,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 
 import '../../Homepage.dart';
+import '../../home/navigationWrapper.dart';
 // import '../landingPage.dart';
 
 class IntroductionAnimationScreen extends StatefulWidget {
@@ -110,7 +111,11 @@ class _IntroductionAnimationScreenState
   }
 
   void _endClick() {
-    Get.offAll(() => MyHomePage());
-    // Navigator.pop(context);
+    Get.offAll(() => NavigationWrapper());
+    // arguments: {
+    //   "categoryId": authService.userData
+    //           .value.categoryId ??
+    //       "[-1]"
+    // });
   }
 }
