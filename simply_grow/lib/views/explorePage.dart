@@ -2,30 +2,21 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
-import 'package:velocity_x/velocity_x.dart';
+import 'package:simply_grow/app_theme.dart';
+import 'package:simply_grow/constant.dart';
 
-import '../app_theme.dart';
 import '../controllers/navigationController.dart';
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key key, this.title}) : super(key: key);
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
+class ExplorePage extends StatefulWidget {
+  const ExplorePage({Key key, this.title}) : super(key: key);
 
   final String title;
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<ExplorePage> createState() => _ExplorePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _ExplorePageState extends State<ExplorePage> {
   int _counter = 0;
 
   void _incrementCounter() {
@@ -93,26 +84,100 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
+  Widget getSearchBarUI() {
+    return Padding(
+      padding: const EdgeInsets.only(top: 8.0, left: 18, right: 18),
+      child:
+          // Row(
+          //   mainAxisAlignment: MainAxisAlignment.center,
+          //   crossAxisAlignment: CrossAxisAlignment.start,
+          //   children: <Widget>[
+          Expanded(
+        // width: MediaQuery.of(context).size.width * 0.75,
+        // height: 64,
+        child: Padding(
+          padding: const EdgeInsets.only(top: 8, bottom: 8),
+          child: Container(
+            decoration: BoxDecoration(
+              color: HexColorNew('#F8FAFB'),
+              borderRadius: const BorderRadius.only(
+                bottomRight: Radius.circular(13.0),
+                bottomLeft: Radius.circular(13.0),
+                topLeft: Radius.circular(13.0),
+                topRight: Radius.circular(13.0),
+              ),
+            ),
+            child: Row(
+              children: <Widget>[
+                Expanded(
+                  child: Container(
+                    padding: const EdgeInsets.only(left: 16, right: 16),
+                    child: TextFormField(
+                      style: TextStyle(
+                        fontFamily: 'WorkSans',
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16,
+                        color: Utils.themeColor,
+                      ),
+                      keyboardType: TextInputType.text,
+                      decoration: InputDecoration(
+                        labelText: 'Search for course',
+                        border: InputBorder.none,
+                        helperStyle: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                          color: HexColorNew('#B9BABC'),
+                        ),
+                        labelStyle: TextStyle(
+                          fontWeight: FontWeight.w600,
+                          fontSize: 16,
+                          letterSpacing: 0.2,
+                          color: HexColorNew('#B9BABC'),
+                        ),
+                      ),
+                      onEditingComplete: () {},
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  width: 60,
+                  height: 60,
+                  child: Icon(Icons.search, color: HexColorNew('#B9BABC')),
+                )
+              ],
+            ),
+          ),
+        ),
+      ),
+      // const Expanded(
+      //   child: SizedBox(),
+      // )
+      //   ],
+      // ),
+    );
+  }
+
   Widget homePageGridLayout(BuildContext context) {
     return ListView(
       shrinkWrap: true,
       children: [
+        getSearchBarUI(),
         // Under Intro
         Padding(
           padding: const EdgeInsets.only(
-            left: 8,
-            right: 8,
+            left: 24,
+            right: 24,
           ),
           child: SizedBox(
-            height: 320,
+            height: 160,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                const SizedBox(
+              children: const <Widget>[
+                SizedBox(
                   height: 16,
                 ),
-                const Text(
+                Text(
                   'Hello Amogh 👋',
                   textAlign: TextAlign.left,
                   style: TextStyle(
@@ -122,10 +187,10 @@ class _MyHomePageState extends State<MyHomePage> {
                     color: Color(0xFF3A5160),
                   ),
                 ),
-                const SizedBox(
+                SizedBox(
                   height: 8,
                 ),
-                const Expanded(
+                Expanded(
                   child: Text(
                     "How are you Feeling today...",
                     textAlign: TextAlign.center,
@@ -136,84 +201,9 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                   ),
                 ),
-                const SizedBox(
+                SizedBox(
                   height: 16,
                 ),
-                Container(
-                  color: Colors.white,
-                  child: Align(
-                    alignment: Alignment.topLeft,
-                    child: const Text(
-                      "Learn Offline",
-                      style: AppTheme.title,
-                    ).px(16),
-                  ),
-                ),
-                14.heightBox,
-                Container(
-                  height: 120,
-                  width: context.screenWidth,
-                  decoration: BoxDecoration(
-                      boxShadow: const [
-                        BoxShadow(
-                          color: Colors.grey,
-                          blurRadius: 2.0,
-                          spreadRadius: 0.0,
-                          offset: Offset(
-                              2.0, 2.0), // shadow direction: bottom right
-                        )
-                      ],
-                      image: const DecorationImage(
-                          image: AssetImage('images/flash.png'),
-                          fit: BoxFit.fitWidth),
-                      borderRadius: BorderRadius.circular(16)),
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Center(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Image.asset(
-                            'images/nomess.png',
-                            fit: BoxFit.fitHeight,
-                            height: 80,
-                          ),
-                          20.widthBox,
-                          Container(
-                            // width: context.screenWidth * 0.5,
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text("Learn with the Fun!",
-                                    textAlign: TextAlign.left,
-                                    style: AppTheme.body2.copyWith(
-                                        fontSize: 15,
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.bold)),
-                                14.heightBox,
-                                Text("Top Courses",
-                                        textAlign: TextAlign.center,
-                                        style: AppTheme.body2.copyWith(
-                                            color: Colors.black,
-                                            fontWeight: FontWeight.bold))
-                                    .py(10)
-                                    .w(160)
-                                    .box
-                                    .white
-                                    .outerShadowLg
-                                    .roundedSM
-                                    .make(),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ).centered(),
-                    ),
-                  ),
-                ).onTap(() {
-                  // Get.to(() => NearbyCenterPage());
-                }).px16(),
               ],
             ),
           ),

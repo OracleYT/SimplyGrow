@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
 
+import 'package:dio/dio.dart';
+import 'package:dio_http_cache_lts/dio_http_cache_lts.dart';
 import 'package:simply_grow/constant.dart';
 // import 'package:dio/dio.dart';
 // import 'package:dio_http_cache_lts/dio_http_cache_lts.dart';
@@ -9,6 +11,8 @@ import 'package:simply_grow/constant.dart';
 import 'package:http/http.dart' as http;
 import 'package:simply_grow/models/cardDetails.dart';
 import 'package:simply_grow/models/topicCardData.dart';
+
+import 'models/courseDetails.dart';
 
 class ApiEndpoints {
   static String testRoot = "http://13.235.110.101/";
@@ -86,19 +90,19 @@ class ApiEndpoints {
 //   //**************API CACHE********************* */
 
 //   //Get Dio client for caching api calls
-//   static Dio getDioClient() {
-//     var _dioCacheManager = DioCacheManager(CacheConfig());
-//     Dio _dio = Dio();
-//     _dio.interceptors.add(_dioCacheManager.interceptor);
-//     return _dio;
-//   }
+  static Dio getDioClient() {
+    var _dioCacheManager = DioCacheManager(CacheConfig());
+    Dio _dio = Dio();
+    _dio.interceptors.add(_dioCacheManager.interceptor);
+    return _dio;
+  }
 
 //   //Cache storing options
-//   static Options cacheOptions(bool force, {String key}) =>
-//       buildCacheOptions(Duration(days: 2),
-//           forceRefresh: force,
-//           primaryKey: key,
-//           options: Options(responseType: ResponseType.plain));
+  static Options cacheOptions(bool force, {String key}) =>
+      buildCacheOptions(Duration(days: 2),
+          forceRefresh: force,
+          primaryKey: key,
+          options: Options(responseType: ResponseType.plain));
 
 //   ///clears the cache
 //   static void clearCache() async {
@@ -399,28 +403,25 @@ class ApiEndpoints {
 //     return categoryItems;
 //   }
 
-//   static Future<List<CourseDetail>> getTopCoursesList() async {
-//     String topCourses = baseApi + 'top_courses';
+  static Future<List<CourseDetail>> getTopCoursesList() async {
+    String api = " https://carducate.000webhostapp.com/subjects.php";
+    try {
+      var _dio = ApiEndpoints.getDioClient();
+      var response =
+          await _dio.get(api, options: ApiEndpoints.cacheOptions(true));
 
-//     try {
-//       print("apicall:" + topCourses);
+      print("response:" + response.data);
+      print("response got");
 
-//       var _dio = ApiEndpoints.getDioClient();
-//       var response =
-//           await _dio.get(topCourses, options: ApiEndpoints.cacheOptions(true));
+      final courseDetail = courseDetailFromJson(response.data);
+      print("All courses list fetched");
 
-//       print("response:" + response.data);
-//       print("response got");
-
-//       final courseDetail = courseDetailFromJson(response.data);
-//       print("top courses list fetched");
-
-//       return courseDetail;
-//     } catch (e) {
-//       print(e);
-//     }
-//     return [];
-//   }
+      return courseDetail;
+    } catch (e) {
+      print(e);
+    }
+    return [];
+  }
 
 //   static Future<List<CourseDetail>> getResumeCoursesList(token) async {
 //     String resumeCourses = baseApi + 'get_resume_courses?auth_token=$token';

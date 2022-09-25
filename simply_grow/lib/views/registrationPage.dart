@@ -3,25 +3,17 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_navigation/src/extension_navigation.dart';
+import 'package:get/get.dart';
 import 'package:simply_grow/views/home/navigationWrapper.dart';
 // import 'package:walk_with_you/style/theme.dart' as Theme;
-import 'dart:math';
+import '../constant.dart';
 import '../widgets/textField.dart';
 
 class ColorsNew {
   const ColorsNew();
 
-  static const Color loginGradientStart = const Color(0xFFfbab66);
-  static const Color loginGradientEnd = const Color(0xFFf7418c);
-
-  static const primaryGradient = const LinearGradient(
-    colors: const [loginGradientStart, loginGradientEnd],
-    stops: const [0.0, 1.0],
-    begin: Alignment.topCenter,
-    end: Alignment.bottomCenter,
-  );
+  static const Color loginGradientStart = Color(0xFFfbab66);
+  static const Color loginGradientEnd = Color(0xFFf7418c);
 }
 
 // class TabIndicationPainter extends CustomPainter {
@@ -70,11 +62,11 @@ class _RelaxViewState extends State<RelaxView> {
   TextEditingController password = TextEditingController();
   bool success = false;
 
-  TextEditingController signupEmailController = new TextEditingController();
-  TextEditingController signupNameController = new TextEditingController();
-  TextEditingController signupPasswordController = new TextEditingController();
+  TextEditingController signupEmailController = TextEditingController();
+  TextEditingController signupNameController = TextEditingController();
+  TextEditingController signupPasswordController = TextEditingController();
   TextEditingController signupConfirmPasswordController =
-      new TextEditingController();
+      TextEditingController();
 
   PageController pageController;
   AnimationController animationController;
@@ -124,7 +116,7 @@ class _RelaxViewState extends State<RelaxView> {
           children: [
             Column(
               children: [
-                Text(
+                const Text(
                   "Get Along ...",
                   style: TextStyle(fontSize: 26.0, fontWeight: FontWeight.bold),
                 ),
@@ -140,13 +132,14 @@ class _RelaxViewState extends State<RelaxView> {
                 // ),
                 GestureDetector(
                   child: Padding(
-                      padding: EdgeInsets.only(top: 12, left: 34, right: 34),
+                      padding:
+                          const EdgeInsets.only(top: 12, left: 34, right: 34),
                       child: page == false // 0.4
                           ? Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.end,
                               children: [
-                                Text(
+                                const Text(
                                   "Already have an account?",
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
@@ -158,10 +151,11 @@ class _RelaxViewState extends State<RelaxView> {
                                 GestureDetector(
                                   onTap: () {
                                     pageController.animateToPage(1,
-                                        duration: Duration(milliseconds: 500),
+                                        duration:
+                                            const Duration(milliseconds: 500),
                                         curve: Curves.decelerate);
                                   },
-                                  child: Text(
+                                  child: const Text(
                                     "  Login here  ",
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
@@ -177,7 +171,7 @@ class _RelaxViewState extends State<RelaxView> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.end,
                               children: [
-                                Text(
+                                const Text(
                                   "Don't have an account?",
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
@@ -190,10 +184,11 @@ class _RelaxViewState extends State<RelaxView> {
                                 GestureDetector(
                                   onTap: () {
                                     pageController.animateToPage(0,
-                                        duration: Duration(milliseconds: 500),
+                                        duration:
+                                            const Duration(milliseconds: 500),
                                         curve: Curves.decelerate);
                                   },
-                                  child: Text(
+                                  child: const Text(
                                     "  Sign Up  ",
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
@@ -206,7 +201,7 @@ class _RelaxViewState extends State<RelaxView> {
                               ],
                             )),
                 ),
-                Container(
+                SizedBox(
                   // color: Colors.black,
                   width: MediaQuery.of(context).size.width,
                   height:
@@ -216,7 +211,7 @@ class _RelaxViewState extends State<RelaxView> {
                       330.0,
                   child: PageView(
                     controller: pageController,
-                    physics: BouncingScrollPhysics(),
+                    physics: const BouncingScrollPhysics(),
                     onPageChanged: (i) {
                       if (i == 0) {
                         setState(() {
@@ -243,26 +238,26 @@ class _RelaxViewState extends State<RelaxView> {
               ],
             ),
             Padding(
-              padding: EdgeInsets.only(top: 10.0, bottom: 8),
+              padding: const EdgeInsets.only(top: 10.0, bottom: 8),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Container(
-                    decoration: BoxDecoration(
-                      gradient: new LinearGradient(
+                    decoration: const BoxDecoration(
+                      gradient: LinearGradient(
                           colors: [
                             Color.fromRGBO(231, 236, 243, 1),
                             Color.fromARGB(255, 212, 218, 225),
                           ],
-                          begin: const FractionalOffset(0.0, 0.0),
-                          end: const FractionalOffset(1.0, 1.0),
+                          begin: FractionalOffset(0.0, 0.0),
+                          end: FractionalOffset(1.0, 1.0),
                           stops: [0.0, 1.0],
                           tileMode: TileMode.clamp),
                     ),
                     width: 100.0,
                     height: 1.0,
                   ),
-                  Padding(
+                  const Padding(
                     padding: EdgeInsets.only(left: 15.0, right: 15.0),
                     child: Text(
                       "Or",
@@ -274,14 +269,14 @@ class _RelaxViewState extends State<RelaxView> {
                     ),
                   ),
                   Container(
-                    decoration: BoxDecoration(
-                      gradient: new LinearGradient(
+                    decoration: const BoxDecoration(
+                      gradient: LinearGradient(
                           colors: [
                             Color.fromARGB(255, 212, 218, 225),
                             Color.fromRGBO(231, 236, 243, 1),
                           ],
-                          begin: const FractionalOffset(0.0, 0.0),
-                          end: const FractionalOffset(1.0, 1.0),
+                          begin: FractionalOffset(0.0, 0.0),
+                          end: FractionalOffset(1.0, 1.0),
                           stops: [0.0, 1.0],
                           tileMode: TileMode.clamp),
                     ),
@@ -304,7 +299,7 @@ class _RelaxViewState extends State<RelaxView> {
                   // children: [
                   Platform.isIOS
                       ? Padding(
-                          padding: EdgeInsets.only(
+                          padding: const EdgeInsets.only(
                               top: 22.0, right: 0.0, bottom: 12),
                           child: GestureDetector(
                             onTap: () async {
@@ -313,14 +308,15 @@ class _RelaxViewState extends State<RelaxView> {
                             }, // => showInSnackBar("Facebook button pressed"),
                             child: Container(
                               padding: const EdgeInsets.all(15.0),
-                              decoration: new BoxDecoration(
+                              decoration: BoxDecoration(
                                   shape: BoxShape.circle,
                                   color: Colors.white,
                                   border: Border.all(
                                     width: 2,
-                                    color: Color.fromRGBO(231, 236, 243, 1),
+                                    color:
+                                        const Color.fromRGBO(231, 236, 243, 1),
                                   )),
-                              child: new Icon(
+                              child: const Icon(
                                 FontAwesomeIcons.apple,
                                 color: Color.fromARGB(255, 46, 50, 54),
                               ),
@@ -334,7 +330,7 @@ class _RelaxViewState extends State<RelaxView> {
                   // ),
                   Platform.isAndroid
                       ? Padding(
-                          padding: EdgeInsets.only(top: 10.0, left: 0),
+                          padding: const EdgeInsets.only(top: 10.0, left: 0),
                           child: GestureDetector(
                             onTap: () async {
                               // success = await loginPageModel.googleSignIn();
@@ -342,14 +338,15 @@ class _RelaxViewState extends State<RelaxView> {
                             }, // => showInSnackBar("Google button pressed"),
                             child: Container(
                               padding: const EdgeInsets.all(15.0),
-                              decoration: new BoxDecoration(
+                              decoration: BoxDecoration(
                                   shape: BoxShape.circle,
                                   color: Colors.white,
                                   border: Border.all(
                                     width: 2,
-                                    color: Color.fromRGBO(231, 236, 243, 1),
+                                    color:
+                                        const Color.fromRGBO(231, 236, 243, 1),
                                   )),
-                              child: new Icon(
+                              child: const Icon(
                                 FontAwesomeIcons.google,
                                 color: Color(0xFF0084ff),
                               ),
@@ -360,7 +357,7 @@ class _RelaxViewState extends State<RelaxView> {
                 ],
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 16,
             ),
             Container(
@@ -368,18 +365,39 @@ class _RelaxViewState extends State<RelaxView> {
               width: 188,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8),
-                color: Color(0xff132137),
+                color: const Color(0xff132137),
               ),
               child: InkWell(
-                key: ValueKey('Sign Up button'),
+                // key: const ValueKey('Sign Up button'),
                 onTap: () {
-                  Get.offAll(() => NavigationWrapper());
+                  if (email2.text.isNotEmpty && password.text.isNotEmpty) {
+                    // Utils.showLoading();
+                    // AuthService authService = Get.put(AuthService());
+
+                    // var res = await authService.login(
+                    //     baseUrl, email.text, password.text);
+                    // Utils.closeLoading();
+                    // if (true) {
+                    //   print("loggedin");
+                    Utils.toast("Login Successful");
+                    Get.to(() => NavigationWrapper());
+                    // context.nextAndRemoveUntilPage(AuthWrapper());
+                    // authService
+                    //     .getToken(authService.userData.value.token);
+                    // } else if (res == "fatal") {
+                    //   Utils.toast("Fatal Error");
+                    // } else {
+                    //   Utils.toast("Credentials are not valid");
+                    // }
+                  } else {
+                    Utils.toast("Please fill all the fields");
+                  }
                 },
                 child: Padding(
-                  padding: EdgeInsets.only(left: 16.0, right: 16.0),
+                  padding: const EdgeInsets.only(left: 16.0, right: 16.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
+                    children: const [
                       Text(
                         'Continue',
                         style: TextStyle(
@@ -408,23 +426,23 @@ class _RelaxViewState extends State<RelaxView> {
         // key: viewModel.signInFormKey,
         autovalidateMode: AutovalidateMode.onUserInteraction,
         child: Container(
-          padding: EdgeInsets.only(top: 23.0),
+          padding: const EdgeInsets.only(top: 23.0),
           child: Column(
             children: <Widget>[
-              Container(
+              SizedBox(
                 width: 300.0,
                 // height: 190.0,
                 child: Column(
                   children: <Widget>[
                     CustomTextField(
                       hint: "Email ID",
-                      icon: Icon(Icons.email),
+                      icon: const Icon(Icons.email),
                       obsecure: false,
                       autofocus: false,
                       validator: (value) {
                         Pattern pattern =
                             r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
-                        RegExp regex = new RegExp(pattern as String);
+                        RegExp regex = RegExp(pattern as String);
 
                         if ((value != null && value.trim().isEmpty) ||
                             value == null) {
@@ -446,7 +464,7 @@ class _RelaxViewState extends State<RelaxView> {
                     //Password
                     CustomTextField(
                       hint: "Password",
-                      icon: Icon(Icons.lock),
+                      icon: const Icon(Icons.lock),
                       obsecure: true,
                       autofocus: false,
                       validator: (value) {
@@ -472,10 +490,10 @@ class _RelaxViewState extends State<RelaxView> {
     return Form(
         // key: viewModel.signUpFormKey,
         child: Container(
-      padding: EdgeInsets.only(top: 23.0),
+      padding: const EdgeInsets.only(top: 23.0),
       child: Column(
         children: <Widget>[
-          Container(
+          SizedBox(
             width: 300.0,
             // height: 300.0,
             child: Column(
@@ -483,7 +501,7 @@ class _RelaxViewState extends State<RelaxView> {
               children: <Widget>[
                 CustomTextField(
                   hint: "Name",
-                  icon: Icon(Icons.people),
+                  icon: const Icon(Icons.people),
                   obsecure: false,
                   autofocus: false,
                   validator: (value) {
@@ -506,13 +524,13 @@ class _RelaxViewState extends State<RelaxView> {
                 //Email ID
                 CustomTextField(
                   hint: "Email ID",
-                  icon: Icon(Icons.email),
+                  icon: const Icon(Icons.email),
                   obsecure: false,
                   autofocus: false,
                   validator: (value) {
                     Pattern pattern =
                         r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
-                    RegExp regex = new RegExp(pattern as String);
+                    RegExp regex = RegExp(pattern as String);
 
                     if (value != null && value.isEmpty) {
                       return "Please enter your email ID";
@@ -533,7 +551,7 @@ class _RelaxViewState extends State<RelaxView> {
                 //Password
                 CustomTextField(
                   hint: "Password",
-                  icon: Icon(Icons.lock),
+                  icon: const Icon(Icons.lock),
                   obsecure: true,
                   autofocus: false,
                   validator: (value) {

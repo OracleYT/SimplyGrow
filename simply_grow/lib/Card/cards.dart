@@ -1,24 +1,22 @@
 import 'dart:developer';
 
-import 'package:simply_grow/api.dart';
+import 'package:flare_flutter/flare_actor.dart';
+import 'package:flare_flutter/flare_controls.dart';
+import 'package:simply_grow/ShortCard/ReelScreen.dart';
 import 'package:simply_grow/app_theme.dart';
-import 'package:simply_grow/views/onboarding/authService.dart';
 import 'package:simply_grow/widgets/loadingPage.dart';
-import 'package:date_time_format/date_time_format.dart';
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tindercard/flutter_tindercard.dart';
 import 'package:get/get.dart';
-import 'package:lottie/lottie.dart';
 // import 'package:percent_indicator/percent_indicator.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import '../../constant.dart';
 import '../controllers/navigationController.dart';
-import '../views/onboarding/authService.dart';
 
 class CardView extends StatefulWidget {
-  CardView({Key key}) : super(key: key);
+  const CardView({Key key}) : super(key: key);
 
   @override
   _CardViewState createState() => _CardViewState();
@@ -71,6 +69,9 @@ class _CardViewState extends State<CardView> {
     // });
   }
 
+  final FlareControls flareControls = FlareControls();
+  bool isLiked = false;
+
   @override
   Widget build(BuildContext context) {
     final navigationController =
@@ -78,10 +79,10 @@ class _CardViewState extends State<CardView> {
     return Scaffold(
       backgroundColor: Colors.white, //Color(0xffECEEFF),
       body: SafeArea(
-          child: false //showResults
+          child: showResults
               ? _showResultWidget(context)
               : questions.isEmpty
-                  ? LoadingPage()
+                  ? const LoadingPage()
                   : Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -97,7 +98,7 @@ class _CardViewState extends State<CardView> {
                           ),
                         ).px(10),
                         // if (showResults == false)
-                        //   _makeProgressBar(currentIndex, questions.length),
+                        // _makeProgressBar(currentIndex, questions.length),
                         20.heightBox,
                         Container(
                           height: MediaQuery.of(context).size.height * 0.76,
@@ -107,13 +108,13 @@ class _CardViewState extends State<CardView> {
                               boxShadow: [
                                 BoxShadow(
                                     color: Colors.black.withOpacity(0.16),
-                                    offset: Offset(3, 5),
+                                    offset: const Offset(3, 5),
                                     blurRadius: 13)
                               ]),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Container(
+                              SizedBox(
                                 height:
                                     MediaQuery.of(context).size.height * 0.6,
                                 child: TinderSwapCard(
@@ -230,7 +231,7 @@ class _CardViewState extends State<CardView> {
           child: Stack(
             fit: StackFit.expand,
             children: [
-              Lottie.asset('images/confetti.json', repeat: false),
+              // Lottie.asset('images/confetti.json', repeat: false),
               Align(
                   alignment: Alignment.topCenter,
                   child: Column(
@@ -245,7 +246,7 @@ class _CardViewState extends State<CardView> {
                             fontWeight: FontWeight.bold),
                       ),
                       Text(
-                        "You have completed all the flash cards for today.",
+                        "You have completed all the cards and you are now Ready for the Exams.",
                         textAlign: TextAlign.center,
                         style: TextStyle(
                             fontSize: 14,
@@ -279,14 +280,14 @@ class _CardViewState extends State<CardView> {
                       //   backgroundColor: Color(0xff759AFF).withOpacity(0.11),
                       // ),
                       30.heightBox,
-                      Text("Come back tomorrow for more exciting questions.",
+                      const Text("Best of Luck!",
                           textAlign: TextAlign.center,
                           style: TextStyle(
                               fontSize: 16,
                               color: Colors.black,
                               fontWeight: FontWeight.bold)),
                       20.heightBox,
-                      Text(
+                      const Text(
                         "Go Back",
                         // style: Utils.subtitle2.copyWith(
                         //     color: Colors.black,
@@ -315,7 +316,7 @@ class _CardViewState extends State<CardView> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        Container(
+        SizedBox(
           width: 140,
           height: 44,
           child: Stack(
@@ -329,7 +330,7 @@ class _CardViewState extends State<CardView> {
                     boxShadow: [
                       BoxShadow(
                         color: Colors.black.withOpacity(0.16),
-                        offset: Offset(2, 7),
+                        offset: const Offset(2, 7),
                         blurRadius: 7,
                       )
                     ]),
@@ -342,7 +343,7 @@ class _CardViewState extends State<CardView> {
                       size: 28,
                     ),
                     Text(
-                      "False",
+                      "Hold",
                       style: TextStyle(
                           color: Utils.themeColor,
                           fontSize: 20,
@@ -364,20 +365,20 @@ class _CardViewState extends State<CardView> {
                       boxShadow: [
                         BoxShadow(
                           color: Colors.black.withOpacity(0.16),
-                          offset: Offset(2, 7),
+                          offset: const Offset(2, 7),
                           blurRadius: 7,
                         )
                       ]),
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
-                    children: [
+                    children: const [
                       Icon(
                         EvaIcons.close,
                         color: Colors.white,
                         size: 28,
                       ),
                       Text(
-                        "False",
+                        "Hold",
                         style: TextStyle(
                             color: Colors.white,
                             fontSize: 20,
@@ -393,7 +394,7 @@ class _CardViewState extends State<CardView> {
         ).onTap(() {
           controller.triggerLeft();
         }),
-        Container(
+        SizedBox(
           width: 140,
           height: 44,
           child: Stack(
@@ -407,7 +408,7 @@ class _CardViewState extends State<CardView> {
                     boxShadow: [
                       BoxShadow(
                         color: Colors.black.withOpacity(0.16),
-                        offset: Offset(2, 7),
+                        offset: const Offset(2, 7),
                         blurRadius: 7,
                       )
                     ]),
@@ -420,7 +421,7 @@ class _CardViewState extends State<CardView> {
                       size: 28,
                     ),
                     Text(
-                      "True",
+                      "Finish",
                       style: TextStyle(
                           color: HexColorNew("#90CAC7"),
                           fontSize: 20,
@@ -442,20 +443,20 @@ class _CardViewState extends State<CardView> {
                       boxShadow: [
                         BoxShadow(
                           color: Colors.black.withOpacity(0.16),
-                          offset: Offset(2, 7),
+                          offset: const Offset(2, 7),
                           blurRadius: 7,
                         )
                       ]),
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
-                    children: [
+                    children: const [
                       Icon(
                         EvaIcons.checkmark,
                         color: Colors.white,
                         size: 28,
                       ),
                       Text(
-                        "True",
+                        "Finish",
                         style: TextStyle(
                             color: Colors.white,
                             fontSize: 20,
@@ -486,14 +487,14 @@ class _CardViewState extends State<CardView> {
               "Question ${current + 1}",
               style: TextStyle(
                   fontSize: 22,
-                  color: Color(0xff905CE5),
+                  color: Utils.themeColor,
                   fontWeight: FontWeight.bold),
             ),
             Text(
-              "/ ${total}",
+              "/ $total",
               style: TextStyle(
                   fontSize: 14,
-                  color: Color(0xff905CE5),
+                  color: Utils.themeColor,
                   fontWeight: FontWeight.bold),
             )
           ],
@@ -503,13 +504,13 @@ class _CardViewState extends State<CardView> {
             height: 26,
             width: totalWidth,
             decoration: BoxDecoration(
-              color: Color(0xff759AFF).withOpacity(0.11),
+              color: const Color(0xff759AFF).withOpacity(0.11),
               borderRadius: BorderRadius.circular(26),
             ),
             child: Row(
               children: [
                 AnimatedContainer(
-                  duration: Duration(milliseconds: 300),
+                  duration: const Duration(milliseconds: 300),
                   curve: Curves.easeInOut,
                   height: 26,
                   width: ((current + 1) / (total)) * totalWidth,
@@ -518,8 +519,8 @@ class _CardViewState extends State<CardView> {
                       begin: Alignment.bottomLeft,
                       end: Alignment.topRight,
                       colors: [
-                        Color(0xff982DF5),
-                        Color(0xff0098FE),
+                        Utils.themeColor,
+                        const Color(0xff0098FE),
                       ],
                     ),
                     borderRadius: BorderRadius.circular(26),
@@ -533,8 +534,14 @@ class _CardViewState extends State<CardView> {
 
   _cardWidget(String question) {
     return GestureDetector(
-      onDoubleTap: (() {
-        print("orking");
+      onDoubleTap: () {
+        setState(() {
+          isLiked = !isLiked;
+        });
+        flareControls.play("like");
+      },
+      onTap: (() {
+        Get.to(() => const ReelScreen());
       }),
       child: Container(
         decoration: BoxDecoration(
@@ -542,7 +549,7 @@ class _CardViewState extends State<CardView> {
             borderRadius: BorderRadius.circular(20),
             boxShadow: [
               BoxShadow(
-                  offset: Offset(0, 9),
+                  offset: const Offset(0, 9),
                   blurRadius: 7,
                   color: Colors.black.withOpacity(0.30))
             ]),
@@ -592,7 +599,28 @@ class _CardViewState extends State<CardView> {
                     12.heightBox,
                     question.text.bold.size(34).black.make().expand()
                   ],
-                ))
+                )),
+            Positioned(
+              top: 30,
+              bottom: 0,
+              left: 0,
+              right: 0,
+              child: SizedBox(
+                width: double.infinity,
+                height: 250,
+                child: Center(
+                  child: SizedBox(
+                    width: 150,
+                    height: 150,
+                    child: FlareActor(
+                      'images/like.flr',
+                      controller: flareControls,
+                      animation: 'idle',
+                    ),
+                  ),
+                ),
+              ),
+            ),
           ],
         ),
       ),

@@ -9,6 +9,7 @@ import 'package:simply_grow/controllers/navigationController.dart';
 // import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:simply_grow/views/explorePage.dart';
 import 'package:simply_grow/views/homePage.dart';
 
 import '../../Card/cards.dart';
@@ -39,8 +40,8 @@ class NavigationWrapper extends StatelessWidget {
                           width: 50,
                           height: 50,
                           decoration: BoxDecoration(
-                            color: Color(0x003124A1),
-                            boxShadow: [
+                            color: const Color(0x003124A1),
+                            boxShadow: const [
                               BoxShadow(
                                 blurRadius: 4,
                                 color: Color.fromARGB(8, 23, 23, 23),
@@ -50,12 +51,12 @@ class NavigationWrapper extends StatelessWidget {
                             borderRadius: BorderRadius.circular(80),
                             shape: BoxShape.rectangle,
                             border: Border.all(
-                              color: Color.fromRGBO(57, 75, 123, 0.9),
+                              color: const Color.fromRGBO(57, 75, 123, 0.9),
                               width: 1.8,
                             ),
                           ),
-                          alignment: AlignmentDirectional(-0.0, 0),
-                          child: Icon(
+                          alignment: const AlignmentDirectional(-0.0, 0),
+                          child: const Icon(
                             Icons.chevron_left_rounded,
                             color: Colors.white,
                             size: 30,
@@ -66,6 +67,53 @@ class NavigationWrapper extends StatelessWidget {
                               .hideDrawer();
                           // refference!.read(drawerControllerProvider).hideDrawer();
                         },
+                      ),
+                    ),
+                    Expanded(
+                      child: ListView(
+                        shrinkWrap: true,
+                        padding:
+                            const EdgeInsets.only(left: 36, top: 0, bottom: 24),
+                        children: <Widget>[
+                          // CircleAvatar(
+                          //   radius: 24,
+                          //   backgroundImage: CachedNetworkImageProvider(
+                          //     profile,
+                          //   ),
+                          // ),
+                          // Padding(
+                          // padding: const EdgeInsets.only(left: 8.0),
+                          // child:
+                          // CircleAvatar(
+
+                          GestureDetector(
+                            onTap: () {
+                              // mainDrawerViewModel.navigateToProfilePage();
+                            },
+                            child: const Align(
+                              alignment: Alignment.centerLeft,
+                              child: CircleAvatar(
+                                radius: 54,
+                                backgroundImage: AssetImage(
+                                  "images/boy1.png",
+                                ),
+                              ),
+                            ),
+                          ),
+                          const Padding(
+                            padding: EdgeInsets.only(top: 36.0, bottom: 16),
+                            child: Text(
+                              "Amogh Vaishnav",
+                              style: TextStyle(
+                                fontWeight: FontWeight.w700,
+                                fontSize: 24,
+                                letterSpacing: 0.27,
+                                color: Color.fromARGB(255, 205, 209, 223),
+                              ),
+                              textAlign: TextAlign.left,
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                     // Expanded(
@@ -89,17 +137,18 @@ class NavigationWrapper extends StatelessWidget {
               ),
 
               child: Scaffold(
+                backgroundColor: Colors.white,
                 body: SizedBox.expand(
                   child: PageView(
                       controller: _pageController,
                       onPageChanged: (index) {
                         navigationController.onPageChange(index);
                       },
-                      children: <Widget>[
+                      children: const <Widget>[
                         MyHomePage(
                           title: "Hola",
                         ),
-                        MyHomePage(
+                        ExplorePage(
                           title: "Hola",
                         ),
                         MaterialApp(
@@ -119,17 +168,17 @@ class NavigationWrapper extends StatelessWidget {
                       const EdgeInsets.symmetric(horizontal: 0, vertical: 16),
                   child: GNav(
                     gap: 16,
-
+                    // backgroundColor: Colors.white,
                     activeColor: Colors.white.withOpacity(0.95),
                     iconSize: 21,
                     padding: const EdgeInsets.symmetric(
                         horizontal: 24, vertical: 18),
-                    duration: Duration(milliseconds: 400),
+                    duration: const Duration(milliseconds: 400),
                     tabBackgroundColor: Utils.themeColor, //Colors.grey[100]!,
                     color: HexColorNew('#9DA0AA'),
                     // curve: Curves.slowMiddle,
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    tabs: [
+                    tabs: const [
                       GButton(
                         icon: FontAwesomeIcons.home,
                         text: 'Home',
@@ -148,7 +197,7 @@ class NavigationWrapper extends StatelessWidget {
 
                       GButton(
                         icon: FontAwesomeIcons.bookBookmark,
-                        text: 'Posts',
+                        text: 'Revision',
                       ),
                     ],
                     selectedIndex: navigationController.currentIndex.value,
