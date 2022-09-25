@@ -79,7 +79,7 @@ class GradsView extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                "Created by IIT-IIM Grads",
+                "Quick go through",
                 style: TextStyle(fontSize: 26.0, fontWeight: FontWeight.bold),
               ),
               SlideTransition(
@@ -90,7 +90,7 @@ class GradsView extends StatelessWidget {
                     padding: EdgeInsets.only(
                         left: 64, right: 64, top: 16, bottom: 16),
                     child: Text(
-                      "We are a team of IIT and IIM graduates with expertise in Computer Science",
+                      "Switch between modes of learning and revision, experience a new way to learn what you want",
                       textAlign: TextAlign.center,
                     ),
                   ),
@@ -103,7 +103,7 @@ class GradsView extends StatelessWidget {
                   child: Container(
                     constraints: BoxConstraints(maxWidth: 350, maxHeight: 250),
                     child: Image.asset(
-                      'images/slide3.png',
+                      'images/Tag1.png',
                       fit: BoxFit.contain,
                     ),
                   ),

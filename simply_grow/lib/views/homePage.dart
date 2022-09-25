@@ -1,5 +1,9 @@
 // ignore: file_names
 import 'package:flutter/material.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_instance/src/extension_instance.dart';
+
+import '../controllers/navigationController.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key key, this.title}) : super(key: key);
@@ -35,6 +39,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final navigationController =
+        Get.put(NavigationController(), permanent: true);
     // This method is rerun every time setState is called, for instance as done
     // by the _incrementCounter method above.
     //
@@ -43,45 +49,148 @@ class _MyHomePageState extends State<MyHomePage> {
     // than having to individually change instances of widgets.
     return Scaffold(
       appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
+        backgroundColor: Colors.white,
+        elevation: 0,
+        leading: GestureDetector(
+          child: SizedBox(
+            width: 58,
+            height: 58,
+            child: Icon(Icons.menu_rounded,
+                color: const Color.fromRGBO(24, 30, 48, 1)),
+          ),
+          onTap: () {
+            navigationController.advancedDrawerController.showDrawer();
+          },
+        ),
+        leadingWidth: 65,
+        actions: [
+          GestureDetector(
+            onTap: () {
+              // navigateToProfilePage();
+            },
+            child: Padding(
+              padding: const EdgeInsets.only(right: 24),
+              child: CircleAvatar(
+                radius: 38,
+                backgroundImage: AssetImage("images/boy1.png"),
+              ),
+            ),
+          ),
+        ],
       ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
+      backgroundColor: Colors.white,
+      body: SafeArea(
+        child: Stack(
+          children: [
+            homePageGridLayout(context),
+            // Custom App Bar
+            // getAppBarUI(context, ref),
           ],
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
+
+  Widget homePageGridLayout(BuildContext context) {
+    return ListView(
+      shrinkWrap: true,
+      children: [
+        // Under Intro
+        Padding(
+          padding: EdgeInsets.only(
+            left: 24,
+            right: 24,
+          ),
+          child: SizedBox(
+            height: 160,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                SizedBox(
+                  height: 16,
+                ),
+                Text(
+                  'Hello Amogh 👋',
+                  textAlign: TextAlign.left,
+                  style: TextStyle(
+                    fontWeight: FontWeight.w400,
+                    fontSize: 16,
+                    letterSpacing: 0.2,
+                    color: Color(0xFF3A5160),
+                  ),
+                ),
+                SizedBox(
+                  height: 8,
+                ),
+                Expanded(
+                  child: Text(
+                    "How are you Feeling today...",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontWeight: FontWeight.w600,
+                      fontSize: 32,
+                      color: Color(0xFF17262A),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 16,
+                ),
+              ],
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  // Widget getAppBarUI(context) {
+  //   return Padding(
+  //     padding: EdgeInsets.only(
+  //         top: 0,
+  //         left: 8,
+  //         right: 24),
+  //     child: Row(
+  //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+  //       children: <Widget>[
+  //         GestureDetector(
+  //               child: SizedBox(
+  //                 width: (SizeConfig.box60),
+  //                 height: (SizeConfig.box60),
+  //                 child: Icon(Icons.menu_rounded,
+  //                     color: const Color.fromRGBO(24, 30, 48, 1)),
+  //               ),
+  //               onTap: () {
+  //                 ref.read(drawerControllerProvider).showDrawer();
+  //               },
+  //             ),
+  //         Row(
+  //           children: [
+  //             // SizedBox(
+  //             //   width: (SizeConfig.hp * 7.5),
+  //             //   height: (SizeConfig.hp * 7.5),
+  //             //   child: Icon(Icons.notifications_none_rounded,
+  //             //       color: const Color.fromRGBO(24, 30, 48, 1)),
+  //             // ),
+  //             // SizedBox(
+  //             //   width: 4,
+  //             // ),
+  //             GestureDetector(
+  //               onTap: () {
+  //                 navigateToProfilePage();
+  //               },
+  //               child: CircleAvatar(
+  //                 radius: (SizeConfig.avatarRadius),
+  //                 backgroundImage: CachedNetworkImageProvider(
+  //                   profile,
+  //                 ),
+  //               ),
+  //             ),
+  //           ],
+  //         )
+  //       ],
+  //     ),
+  //   );
+  // }
 }

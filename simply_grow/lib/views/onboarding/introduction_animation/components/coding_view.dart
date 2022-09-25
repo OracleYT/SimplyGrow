@@ -75,7 +75,7 @@ class CodingView extends StatelessWidget {
               SlideTransition(
                 position: _relaxAnimation,
                 child: Text(
-                  "In App Coding",
+                  "House of cards",
                   style: TextStyle(fontSize: 26.0, fontWeight: FontWeight.bold),
                 ),
               ),
@@ -85,7 +85,7 @@ class CodingView extends StatelessWidget {
                   padding:
                       EdgeInsets.only(left: 64, right: 64, top: 16, bottom: 16),
                   child: Text(
-                    "Cutting-edge cloud-based computing technology is used to create virtual machines which can be used to code in the app itself",
+                    "Seamless experience of learning through learning cards\n- navigate easy and on the go ...",
                     textAlign: TextAlign.center,
                   ),
                 ),
@@ -95,7 +95,7 @@ class CodingView extends StatelessWidget {
                 child: Container(
                   constraints: BoxConstraints(maxWidth: 350, maxHeight: 250),
                   child: Image.asset(
-                    'images/slide1.png',
+                    'images/card1.png',
                     fit: BoxFit.contain,
                   ),
                 ),

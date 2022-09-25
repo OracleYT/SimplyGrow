@@ -20,7 +20,7 @@ class AuthController extends GetxController {
         await Utils.setOnboardingStatus();
         Get.offAll(() => IntroductionAnimationScreen());
       } else {
-        Get.offAll(() => NavigationWrapper(
+        Get.offAll(() => RelaxView(
             // title: "helll",
             ));
       }
@@ -43,7 +43,7 @@ class AuthController extends GetxController {
       });
     } else {
       Utils.toast("Login Failed");
-      Get.offAll(() => const IntroductionAnimationScreen());
+      Get.offAll(() => const RelaxView());
     }
   }
 }

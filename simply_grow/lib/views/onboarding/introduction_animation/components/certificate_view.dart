@@ -87,7 +87,7 @@ class CertificateView extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.only(bottom: 12),
                       child: Image.asset(
-                        'images/slide2.png',
+                        'images/light1.png',
                         fit: BoxFit.contain,
                       ),
                     ),
@@ -99,7 +99,7 @@ class CertificateView extends StatelessWidget {
                 child: SlideTransition(
                   position: _relaxSecondHalfAnimation,
                   child: Text(
-                    "Certificates",
+                    "Click and Learn",
                     style:
                         TextStyle(fontSize: 26.0, fontWeight: FontWeight.bold),
                   ),
@@ -109,7 +109,7 @@ class CertificateView extends StatelessWidget {
                 padding:
                     EdgeInsets.only(left: 64, right: 64, bottom: 16, top: 16),
                 child: Text(
-                  "Earn a certificate for every learning programme that you complete at no additional cost",
+                  "Minimal user inputs with maximal engagement, as inspired by short video trends",
                   textAlign: TextAlign.center,
                 ),
               ),

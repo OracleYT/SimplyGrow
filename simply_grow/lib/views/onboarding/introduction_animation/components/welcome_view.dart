@@ -32,41 +32,42 @@ class _WelcomeViewState extends State<WelcomeView> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               SizedBox(
-                height: 140,
+                height: 80,
               ),
-              // Padding(
-              //   padding: EdgeInsets.only(top: 36.0, bottom: 24.0, left: 32),
-              //   child: Text(
-              //     "Welcome,",
-              //     textAlign: TextAlign.left,
-              //     style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold),
-              //   ),
-              // ),
+
               SizedBox(
                 width: MediaQuery.of(context).size.width,
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 24),
+                  padding: const EdgeInsets.symmetric(horizontal: 36),
                   child: Image.asset(
-                    'images/logo.png',
+                    'images/boy1.png',
                     fit: BoxFit.cover,
                   ),
                 ),
               ),
-              // Padding(
-              //   padding: EdgeInsets.only(left: 56, right: 56),
-              //   child: Text(
-              //     "We welcome you to be a part of the Coding Jr",
-              //     textAlign: TextAlign.center,
-              //   ),
-              // ),
               Padding(
-                padding: EdgeInsets.only(top: 0, left: 56, right: 56),
+                padding: EdgeInsets.only(top: 36.0, bottom: 16.0, left: 0),
                 child: Text(
-                  "Where the world learns to code",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(fontWeight: FontWeight.bold),
+                  "Hola` Amigo!",
+                  textAlign: TextAlign.left,
+                  style: TextStyle(fontSize: 26.0, fontWeight: FontWeight.bold),
                 ),
               ),
+              Padding(
+                padding: EdgeInsets.only(left: 56, right: 56),
+                child: Text(
+                  "I welcome you to be a part of\nSimply Grow Family.",
+                  textAlign: TextAlign.center,
+                ),
+              ),
+              // Padding(
+              //   padding: EdgeInsets.only(top: 0, left: 56, right: 56),
+              //   child: Text(
+              //     "Where the world learns to code",
+              //     textAlign: TextAlign.center,
+              //     style: TextStyle(fontWeight: FontWeight.bold),
+              //   ),
+              // ),
 
               // SizedBox(
               //   height: 58,

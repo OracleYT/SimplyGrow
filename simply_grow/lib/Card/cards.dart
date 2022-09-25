@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:simply_grow/api.dart';
+import 'package:simply_grow/app_theme.dart';
 import 'package:simply_grow/views/onboarding/authService.dart';
 import 'package:simply_grow/widgets/loadingPage.dart';
 import 'package:date_time_format/date_time_format.dart';
@@ -13,6 +14,7 @@ import 'package:lottie/lottie.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import '../../constant.dart';
+import '../controllers/navigationController.dart';
 import '../views/onboarding/authService.dart';
 
 class CardView extends StatefulWidget {
@@ -71,8 +73,10 @@ class _CardViewState extends State<CardView> {
 
   @override
   Widget build(BuildContext context) {
+    final navigationController =
+        Get.put(NavigationController(), permanent: true);
     return Scaffold(
-      backgroundColor: Color(0xffECEEFF),
+      backgroundColor: Colors.white, //Color(0xffECEEFF),
       body: SafeArea(
           child: false //showResults
               ? _showResultWidget(context)
@@ -83,11 +87,13 @@ class _CardViewState extends State<CardView> {
                       children: [
                         IconButton(
                           onPressed: () {
-                            Get.back();
+                            navigationController.advancedDrawerController
+                                .showDrawer();
+                            // Get.back();
                           },
                           icon: Icon(
                             Icons.arrow_back_ios,
-                            color: Color(0xff8346F0),
+                            color: HexColorNew("#90CAC7"), //Color(0xff8346F0),
                           ),
                         ).px(10),
                         // if (showResults == false)
@@ -96,7 +102,7 @@ class _CardViewState extends State<CardView> {
                         Container(
                           height: MediaQuery.of(context).size.height * 0.76,
                           decoration: BoxDecoration(
-                              color: Color(0xff8346F0),
+                              color: HexColorNew("#90CAC7"),
                               borderRadius: BorderRadius.circular(20),
                               boxShadow: [
                                 BoxShadow(
@@ -235,7 +241,7 @@ class _CardViewState extends State<CardView> {
                         "Congratulations",
                         style: TextStyle(
                             fontSize: 22,
-                            color: Color(0xff905CE5),
+                            color: Utils.themeColor,
                             fontWeight: FontWeight.bold),
                       ),
                       Text(
@@ -243,7 +249,7 @@ class _CardViewState extends State<CardView> {
                         textAlign: TextAlign.center,
                         style: TextStyle(
                             fontSize: 14,
-                            color: Color(0xff905CE5),
+                            color: Utils.themeColor,
                             fontWeight: FontWeight.bold),
                       ),
                       // 20.heightBox,
@@ -332,13 +338,13 @@ class _CardViewState extends State<CardView> {
                   children: [
                     Icon(
                       EvaIcons.close,
-                      color: Vx.red400,
+                      color: Utils.themeColor,
                       size: 28,
                     ),
                     Text(
                       "False",
                       style: TextStyle(
-                          color: Vx.red400,
+                          color: Utils.themeColor,
                           fontSize: 20,
                           height: 1,
                           fontWeight: FontWeight.w700),
@@ -353,7 +359,7 @@ class _CardViewState extends State<CardView> {
                   width: 140,
                   height: 44,
                   decoration: BoxDecoration(
-                      color: Vx.red400,
+                      color: Utils.themeColor, //Vx.red400,
                       borderRadius: BorderRadius.circular(30),
                       boxShadow: [
                         BoxShadow(
@@ -410,13 +416,13 @@ class _CardViewState extends State<CardView> {
                   children: [
                     Icon(
                       EvaIcons.checkmark,
-                      color: Vx.green500,
+                      color: HexColorNew("#90CAC7"),
                       size: 28,
                     ),
                     Text(
                       "True",
                       style: TextStyle(
-                          color: Vx.green500,
+                          color: HexColorNew("#90CAC7"),
                           fontSize: 20,
                           height: 1,
                           fontWeight: FontWeight.w700),
@@ -431,7 +437,7 @@ class _CardViewState extends State<CardView> {
                   width: 140,
                   height: 44,
                   decoration: BoxDecoration(
-                      color: Vx.green500,
+                      color: HexColorNew("#97D0CD"),
                       borderRadius: BorderRadius.circular(30),
                       boxShadow: [
                         BoxShadow(
@@ -526,64 +532,69 @@ class _CardViewState extends State<CardView> {
   }
 
   _cardWidget(String question) {
-    return Container(
-      decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(20),
-          boxShadow: [
-            BoxShadow(
-                offset: Offset(0, 9),
-                blurRadius: 7,
-                color: Colors.black.withOpacity(0.30))
-          ]),
-      child: Stack(
-        children: [
-          Positioned.fill(
-            child: Image.asset(
-              "images/watermark.png",
-              fit: BoxFit.contain,
+    return GestureDetector(
+      onDoubleTap: (() {
+        print("orking");
+      }),
+      child: Container(
+        decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(20),
+            boxShadow: [
+              BoxShadow(
+                  offset: Offset(0, 9),
+                  blurRadius: 7,
+                  color: Colors.black.withOpacity(0.30))
+            ]),
+        child: Stack(
+          children: [
+            Positioned.fill(
+              child: Image.asset(
+                "images/watermark.png",
+                fit: BoxFit.contain,
+              ),
             ),
-          ),
-          Positioned(
-              left: 12,
-              right: 12,
-              bottom: 12,
-              top: 28,
-              child: Container(
-                decoration: BoxDecoration(
-                    color: Colors.transparent,
-                    borderRadius: BorderRadius.circular(16),
-                    border: Border.all(color: Color(0xff8346F0), width: 2)),
-              )),
-          Positioned(
-              top: 10,
-              left: 22,
-              right: 22,
-              bottom: 24,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    height: 38,
-                    decoration: BoxDecoration(
-                      color: Color(0xff8346F0),
-                      borderRadius: BorderRadius.circular(18),
+            Positioned(
+                left: 12,
+                right: 12,
+                bottom: 12,
+                top: 28,
+                child: Container(
+                  decoration: BoxDecoration(
+                      color: Colors.transparent,
+                      borderRadius: BorderRadius.circular(16),
+                      border: Border.all(color: Utils.themeColor, width: 2)),
+                )),
+            Positioned(
+                top: 10,
+                left: 22,
+                right: 22,
+                bottom: 24,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      height: 38,
+                      decoration: BoxDecoration(
+                        color: Utils.themeColor,
+                        borderRadius: BorderRadius.circular(18),
+                      ),
+                      child: "Data Structure"
+                          .text
+                          .bold
+                          .white
+                          .size(24)
+                          .make()
+                          .centered(),
                     ),
-                    child: "Data Structure"
-                        .text
-                        .bold
-                        .white
-                        .size(24)
-                        .make()
-                        .centered(),
-                  ),
-                  8.heightBox,
-                  "Q.".text.bold.size(50).color(Color(0xff8346F0)).make(),
-                  12.heightBox,
-                  question.text.bold.size(34).black.make().expand()
-                ],
-              ))
-        ],
+                    8.heightBox,
+                    "Q.".text.bold.size(50).color(Utils.themeColor).make(),
+                    12.heightBox,
+                    question.text.bold.size(34).black.make().expand()
+                  ],
+                ))
+          ],
+        ),
       ),
     );
   }

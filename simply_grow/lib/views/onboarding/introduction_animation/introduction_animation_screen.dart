@@ -7,6 +7,7 @@ import 'package:simply_grow/views/onboarding/introduction_animation/components/t
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
+import 'package:simply_grow/views/registrationPage.dart';
 
 import '../../Homepage.dart';
 import '../../home/navigationWrapper.dart';
@@ -111,7 +112,7 @@ class _IntroductionAnimationScreenState
   }
 
   void _endClick() {
-    Get.offAll(() => NavigationWrapper());
+    Get.offAll(() => RelaxView());
     // arguments: {
     //   "categoryId": authService.userData
     //           .value.categoryId ??
